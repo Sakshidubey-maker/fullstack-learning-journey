@@ -1,0 +1,28 @@
+# Commands to Upload to New GitHub Account
+
+## Step 1: Remove old remote
+git remote remove origin
+
+## Step 2: Add your NEW GitHub account remote
+## Replace YOUR-NEW-USERNAME with your actual new GitHub username
+git remote add origin https://github.com/YOUR-NEW-USERNAME/fullstack-learning-journey.git
+
+## Step 3: Add the new file
+git add .
+
+## Step 4: Commit changes
+git commit -m "Add: Git commands reference guide"
+
+## Step 5: Push to new GitHub account
+git push -u origin main
+
+## When prompted for credentials:
+## Username: your-new-github-username
+## Password: use Personal Access Token (not password)
+
+## To generate token:
+## 1. Login to new GitHub account
+## 2. Go to: Settings > Developer settings > Personal access tokens > Tokens (classic)
+## 3. Generate new token
+## 4. Select 'repo' scope
+## 5. Copy token and use as password
