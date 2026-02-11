@@ -1,0 +1,6 @@
+desktop.ini
+.DS_Store
+*.tmp
+*.log
+node_modules/
+.env

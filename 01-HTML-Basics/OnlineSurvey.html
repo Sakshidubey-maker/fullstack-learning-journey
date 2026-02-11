@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Feedback Survey | Professional Survey Platform</title>
+    <meta name="description" content="Share your valuable feedback with us">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --bg-light: #f9fafb;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: var(--error-color);
+            margin-left: 4px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        input.error,
+        select.error,
+        textarea.error {
+            border-color: var(--error-color);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .rating-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .rating-option {
+            flex: 1;
+            min-width: 60px;
+        }
+
+        .rating-option input[type="radio"] {
+            display: none;
+        }
+
+        .rating-option label {
+            display: block;
+            padding: 12px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .rating-option input[type="radio"]:checked + label {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .rating-option label:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .privacy-notice {
+            background: var(--bg-light);
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .privacy-notice a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            background: var(--success-color);
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-section li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .info-section li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .responses-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            overflow-x: auto;
+        }
+
+        .responses-table h2 {
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--bg-light);
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        tr:hover {
+            background: var(--bg-light);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-card {
+                padding: 24px;
+            }
+
+            .rating-group {
+                flex-direction: column;
+            }
+
+            .rating-option {
+                min-width: 100%;
+            }
+
+            table {
+                font-size: 0.875rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Customer Feedback Survey</h1>
+            <p>Your feedback helps us improve our services</p>
+        </div>
+
+        <div id="successMessage" class="success-message">
+            ✓ Thank you! Your feedback has been submitted successfully.
+        </div>
+        <div class="form-card">
+            <form id="surveyForm" action="#" method="post" novalidate>
+                <div class="form-group">
+                    <label for="name">Full Name<span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required 
+                           placeholder="Enter your full name" 
+                           aria-required="true"
+                           minlength="2">
+                    <div class="error-message" id="nameError">Please enter your full name</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address<span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required 
+                           placeholder="your.email@example.com"
+                           aria-required="true">
+                    <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" 
+                           placeholder="+1 (555) 000-0000"
+                           pattern="[0-9+\-\s()]+">
+                    <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age<span class="required">*</span></label>
+                    <input type="number" id="age" name="age" required 
+                           min="13" max="120"
+                           placeholder="Enter your age"
+                           aria-required="true">
+                    <div class="error-message" id="ageError">Please enter a valid age (13-120)</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Overall Satisfaction<span class="required">*</span></label>
+                    <div class="rating-group" role="radiogroup" aria-required="true">
+                        <div class="rating-option">
+                            <input type="radio" id="rating1" name="rating" value="1" required>
+                            <label for="rating1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rating2" name="rating" value="2">
+                            <label for="rating2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rating3" name="rating" value="3">
+                            <label for="rating3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rating4" name="rating" value="4">
+                            <label for="rating4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" id="rating5" name="rating" value="5">
+                            <label for="rating5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                    <div class="error-message" id="ratingError">Please select a rating</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Feedback Category<span class="required">*</span></label>
+                    <select id="category" name="category" required aria-required="true">
+                        <option value="">Select a category</option>
+                        <option value="product">Product Quality</option>
+                        <option value="service">Customer Service</option>
+                        <option value="delivery">Delivery Experience</option>
+                        <option value="pricing">Pricing</option>
+                        <option value="website">Website/App Experience</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div class="error-message" id="categoryError">Please select a category</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="feedback">Your Feedback<span class="required">*</span></label>
+                    <textarea id="feedback" name="feedback" rows="5" required 
+                              placeholder="Please share your detailed feedback..."
+                              aria-required="true"
+                              minlength="10"></textarea>
+                    <div class="error-message" id="feedbackError">Please provide at least 10 characters of feedback</div>
+                </div>
+
+                <div class="privacy-notice">
+                    🔒 Your privacy matters: We collect this information to improve our services. 
+                    Read our <a href="#">Privacy Policy</a> to learn how we protect your data.
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">I agree to the terms and conditions and privacy policy<span class="required">*</span></label>
+                    </div>
+                    <div class="error-message" id="consentError">You must agree to continue</div>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Feedback</button>
+            </form>
+        </div>
+
+        <div class="info-section">
+            <h3>Why Your Feedback Matters</h3>
+            <ul>
+                <li>Helps us understand your needs better</li>
+                <li>Drives improvements in our products and services</li>
+                <li>Ensures we deliver the best customer experience</li>
+                <li>Takes only 2-3 minutes to complete</li>
+                <li>All responses are confidential and secure</li>
+            </ul>
+        </div>
+
+        <div class="responses-table">
+            <h2>Recent Feedback Highlights</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Rating</th>
+                        <th>Category</th>
+                        <th>Feedback</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alice M.</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                        <td>Customer Service</td>
+                        <td>Exceptional support team! Resolved my issue quickly.</td>
+                        <td>2024-01-15</td>
+                    </tr>
+                    <tr>
+                        <td>Bob K.</td>
+                        <td>⭐⭐⭐⭐</td>
+                        <td>Product Quality</td>
+                        <td>Great product quality. Would love more color options.</td>
+                        <td>2024-01-14</td>
+                    </tr>
+                    <tr>
+                        <td>Carol S.</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                        <td>Delivery</td>
+                        <td>Fast delivery and excellent packaging!</td>
+                        <td>2024-01-13</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('surveyForm');
+        const successMessage = document.getElementById('successMessage');
+
+        // Form validation
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+
+            // Validate name
+            const name = document.getElementById('name');
+            if (name.value.trim().length < 2) {
+                showError('name', 'nameError');
+                isValid = false;
+            } else {
+                hideError('name', 'nameError');
+            }
+
+            // Validate email
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                showError('email', 'emailError');
+                isValid = false;
+            } else {
+                hideError('email', 'emailError');
+            }
+
+            // Validate age
+            const age = document.getElementById('age');
+            if (age.value < 13 || age.value > 120) {
+                showError('age', 'ageError');
+                isValid = false;
+            } else {
+                hideError('age', 'ageError');
+            }
+
+            // Validate rating
+            const rating = document.querySelector('input[name="rating"]:checked');
+            if (!rating) {
+                document.getElementById('ratingError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('ratingError').classList.remove('show');
+            }
+
+            // Validate category
+            const category = document.getElementById('category');
+            if (!category.value) {
+                showError('category', 'categoryError');
+                isValid = false;
+            } else {
+                hideError('category', 'categoryError');
+            }
+
+            // Validate feedback
+            const feedback = document.getElementById('feedback');
+            if (feedback.value.trim().length < 10) {
+                showError('feedback', 'feedbackError');
+                isValid = false;
+            } else {
+                hideError('feedback', 'feedbackError');
+            }
+
+            // Validate consent
+            const consent = document.getElementById('consent');
+            if (!consent.checked) {
+                document.getElementById('consentError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('consentError').classList.remove('show');
+            }
+
+            if (isValid) {
+                // Show success message
+                successMessage.classList.add('show');
+                form.reset();
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+
+                // In production, submit to backend:
+                // fetch('/api/survey', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(formData)
+                // });
+            }
+        });
+
+        function showError(fieldId, errorId) {
+            document.getElementById(fieldId).classList.add('error');
+            document.getElementById(errorId).classList.add('show');
+        }
+
+        function hideError(fieldId, errorId) {
+            document.getElementById(fieldId).classList.remove('error');
+            document.getElementById(errorId).classList.remove('show');
+        }
+
+        // Real-time validation
+        document.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value) {
+                    this.classList.add('error');
+                } else {
+                    this.classList.remove('error');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
