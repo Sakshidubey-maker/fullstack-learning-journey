@@ -20,6 +20,8 @@
 ### 04-Projects/
 - `landingPAGE.html` - Landing page project
 - `loginpage.html` - Login page project
+- 'portfolio.html'-personal portfolio
+- gfgClone.html'-gfg clone
 
 ---
 
