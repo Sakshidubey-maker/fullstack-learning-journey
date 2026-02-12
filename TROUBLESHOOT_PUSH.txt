@@ -1,0 +1,45 @@
+# Troubleshooting Git Push Errors
+
+## Your Status:
+✅ Commit successful: "Add: GeeksforGeeks clone and portfolio projects"
+✅ Remote configured: https://github.com/Sakshidubey-maker/fullstack-learning-journey.git
+⚠️ Need to push to GitHub
+
+## Common Errors & Solutions:
+
+### Error 1: "Repository not found" or "404"
+**Solution:** Create the repository first
+1. Go to: https://github.com/new
+2. Repository name: fullstack-learning-journey
+3. Keep Public
+4. Don't add README
+5. Click "Create repository"
+
+### Error 2: "Authentication failed" or "Permission denied"
+**Solution:** Use Personal Access Token
+1. Go to: https://github.com/settings/tokens
+2. Generate new token (classic)
+3. Name: FullStack-Projects
+4. Check: repo (full control)
+5. Generate and copy token
+6. Use token as password when pushing
+
+### Error 3: "Support for password authentication was removed"
+**Solution:** Must use Personal Access Token (not password)
+- Generate token at: https://github.com/settings/tokens
+- Use token instead of GitHub password
+
+### Error 4: "Failed to push some refs"
+**Solution:** Pull first, then push
+git pull origin main --allow-unrelated-histories
+git push origin main
+
+## Try Pushing Now:
+git push origin main
+
+## If still failing, try with verbose output:
+git push -v origin main
+
+## Alternative: Use GitHub CLI (if installed)
+gh auth login
+gh repo create fullstack-learning-journey --public --source=. --remote=origin --push

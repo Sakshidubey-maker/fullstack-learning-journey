@@ -1,0 +1,31 @@
+# Push Today's Work to GitHub
+
+## Files Ready to Push:
+✅ gfgClone.html - GeeksforGeeks Clone
+✅ gfg.css - Styling for GFG Clone
+✅ portfolio.html - Portfolio project
+✅ style.css - Portfolio styling
+✅ FIX_CREDENTIALS.txt - Documentation
+
+## Run These Commands Now:
+
+### Step 1: Commit your work
+git commit -m "Add: GeeksforGeeks clone and portfolio projects"
+
+### Step 2: Push to GitHub
+git push origin main
+
+### If prompted for credentials:
+Username: Sakshidubey-maker
+Password: [Your Personal Access Token]
+
+## Don't have a token? Generate one:
+1. Go to: https://github.com/settings/tokens
+2. Click "Generate new token (classic)"
+3. Name: FullStack-Projects
+4. Check: repo
+5. Generate and COPY the token
+6. Use it as password
+
+## After successful push, view your work at:
+https://github.com/Sakshidubey-maker/fullstack-learning-journey

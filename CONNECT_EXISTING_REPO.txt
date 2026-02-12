@@ -1,0 +1,19 @@
+# Connect to Your Existing FullStack Repository
+
+## What's your existing repository URL?
+
+Common formats:
+- https://github.com/Sakshidubey-maker/FullStack
+- https://github.com/Sakshidubey-maker/fullstack
+- https://github.com/Sakshidubey-maker/FullStack-Learning
+
+## Once you tell me the exact repo name, run:
+
+git remote add origin https://github.com/Sakshidubey-maker/YOUR-REPO-NAME.git
+git push -u origin main
+
+## Or if it's a different branch:
+git push -u origin master
+
+## To check your existing repos:
+Go to: https://github.com/Sakshidubey-maker?tab=repositories
